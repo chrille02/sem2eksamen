@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Din makeup-anbefaling</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+            text-align: center;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .quizImage {
+            width: 80%;
+            max-width: 200px;
+            margin: 10px auto;
+            display: none; /* Skjult som standard */
+            border-radius: 10px;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            background: #d2b48c;
+            border: none;
+            color: white;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Din makeup-anbefaling</h2>
+        <p id="resultText"></p>
+
+        <img class="quizImage" src="nyx-lipgloss.png" alt="Nyx - kold tone">
+        <img class="quizImage" src="mac-læbestift.png" alt="Mac">
+        <img class="quizImage" src="elf-lip-plump.png" alt="Elf lip plump">
+
+        <button onclick="goBack()">Tilbage til quiz</button>
+    </div>
+
+    <script>
+        function loadResults() {
+            let userAnswers = JSON.parse(localStorage.getItem("quizAnswers"));
+            if (!userAnswers) {
+                document.getElementById("resultText").textContent = "Ingen data fundet!";
+                return;
+            }
+
+            let recommendation = "";
+            let imageSrc = "";
+
+            if (userAnswers.q0 === "Kold") {
+                recommendation = "En klassisk rød med blå undertoner. Perfekt til et elegant, dramatisk look.";
+                imageSrc = "nyx-lipgloss.png";
+            } else if (userAnswers.q0 === "Varm") {
+                recommendation = "En orange-rød læbestift. Varme toner, der giver glød til huden.";
+                imageSrc = "mac-læbestift.png";
+            } else {
+                recommendation = "En neutral nude-farve. En sofistikeret og afslappet læbefarve.";
+                imageSrc = "elf-lip-plump.png";
+            }
+
+            document.getElementById("resultText").textContent = recommendation;
+
+            // Opdaterer det rigtige billede
+            let images = document.getElementsByClassName("quizImage");
+            for (let img of images) {
+                if (img.src.includes(imageSrc)) {
+                    img.style.display = "block";  // Gør billedet synligt
+                } else {
+                    img.style.display = "none";   // Skjuler andre billeder
+                }
+            }
+        }
+
+        function goBack() {
+            localStorage.removeItem("quizAnswers"); // Ryd svar for en ny quiz
+            window.location.href = "index.html"; // Tilbage til quiz-siden
+        }
+
+        document.addEventListener("DOMContentLoaded", loadResults);
+    </script>
+</body>
+</html>
