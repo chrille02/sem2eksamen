@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BeforeAfter</title>
+    <link rel="stylesheet" href="BeforeAfter.css" />
+  </head>
+  <body>
+  
+<header class="main-header">
+  <div class="logo">
+    <span class="logo-main">makeup</span>
+    <span class="logo-sub">guiden</span>
+  </div>
+  <div class="menu-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</header>
+    
+    <h1>Før og Efter</h1>
+
+    <div class="image-comparison">
+      <div class="images-container">
+        <img class="before-image" src="Før.png" alt="Before" />
+        <img class="after-image" src="Efter.png" alt="After" />
+
+        <div class="slider-line"></div>
+        <div class="slider-icon">
+          <!-- Icon SVG -->
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+               viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+               class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M8.25 15L12 18.75 15.75 15m-7.5-6L12 5.25 15.75 9" />
+          </svg>
+        </div>
+
+        <input type="range" class="slider" min="0" max="100" />
+      </div>
+    </div>
+
+    <!-- New slider -->
+    <div class="image-comparison">
+      <div class="images-container">
+        <img class="before-image" src="FørEye.png" alt="Before 2" />
+        <img class="after-image" src="EfterEye.png" alt="After 2" />
+
+        <div class="slider-line"></div>
+        <div class="slider-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+               viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+               class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M8.25 15L12 18.75 15.75 15m-7.5-6L12 5.25 15.75 9" />
+          </svg>
+        </div>
+
+        <input type="range" class="slider" min="0" max="100" />
+      </div>
+    </div>
+
+    <script src="BeforeAfter.js"></script>
+  </body>
+</html>
