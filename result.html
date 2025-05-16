@@ -44,9 +44,7 @@
         <h2>Din makeup-anbefaling</h2>
         <p id="resultText"></p>
 
-        <img class="quizImage" src="nyx-lipgloss.png" alt="Nyx - kold tone">
-        <img class="quizImage" src="mac-læbestift.png" alt="Mac">
-        <img class="quizImage" src="elf-lip-plump.png" alt="Elf lip plump">
+        <img class="quizImage" id="lipstickImage" src="" alt="Anbefalet læbeprodukt">
 
         <button onclick="goBack()">Tilbage til quiz</button>
     </div>
@@ -62,33 +60,25 @@
             let recommendation = "";
             let imageSrc = "";
 
-            if (userAnswers.q0 === "Kold") {
-                recommendation = "En klassisk rød med blå undertoner. Perfekt til et elegant, dramatisk look.";
+            if (userAnswers.q0 === "Lys" && userAnswers.q1 === "Lipgloss" && userAnswers.q2 === "Kold") {
+                recommendation = "En blød pink gloss passer perfekt til dig!";
                 imageSrc = "nyx-lipgloss.png";
-            } else if (userAnswers.q0 === "Varm") {
-                recommendation = "En orange-rød læbestift. Varme toner, der giver glød til huden.";
+            } else if (userAnswers.q0 === "Medium" && userAnswers.q1 === "Læbestift" && userAnswers.q2 === "Varm") {
+                recommendation = "En varm rød læbestift med orange undertoner vil se fantastisk ud!";
                 imageSrc = "mac-læbestift.png";
             } else {
-                recommendation = "En neutral nude-farve. En sofistikeret og afslappet læbefarve.";
+                recommendation = "En nude lip plumper giver et naturligt og sofistikeret look.";
                 imageSrc = "elf-lip-plump.png";
             }
 
             document.getElementById("resultText").textContent = recommendation;
-
-            // Opdaterer det rigtige billede
-            let images = document.getElementsByClassName("quizImage");
-            for (let img of images) {
-                if (img.src.includes(imageSrc)) {
-                    img.style.display = "block";  // Gør billedet synligt
-                } else {
-                    img.style.display = "none";   // Skjuler andre billeder
-                }
-            }
+            document.getElementById("lipstickImage").src = imageSrc;
+            document.getElementById("lipstickImage").style.display = "block"; // Gør billedet synligt
         }
 
         function goBack() {
             localStorage.removeItem("quizAnswers"); // Ryd svar for en ny quiz
-            window.location.href = "index.html"; // Tilbage til quiz-siden
+            window.location.href = "makeup-test.html"; // Tilbage til quiz-siden
         }
 
         document.addEventListener("DOMContentLoaded", loadResults);
