@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="da">
+<link rel="stylesheet" href="style.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Din læbe-farve anbefaling</title>
+</head>
+<body>
+    <br>
+    <br>
+    <div class="container-2">
+        <h2>Din makeup-anbefaling</h2>
+        <p id="resultText"></p> <!--Her vises anbefalingen -->
+        <!--Link omkring billede, så når man klikker på den kan man se produktet -->
+        <a id="productLink" href="#" target="_blank">
+            <img class="quizImage" id="lipstickImage" src="" alt="Anbefalet læbeprodukt">
+    </a>
+        <button onclick="goBack()">Tilbage</button> 
+    </div>
+    <script>
+        function loadResults() {
+            let userAnswers = JSON.parse(localStorage.getItem("quizAnswers")); // Henter brugerens svar 
+            if (!userAnswers) {
+                document.getElementById("resultText").textContent = "Ingen data fundet!"; // Hvis der ikke findes data 
+                return;
+            }
+
+            let recommendation = ""; // tekst til anbefalinger 
+            let imageSrc = ""; // Kilde til produktbilledet 
+            let productLink = ""; // link til produktet 
+
+            
+            // Bestemmer anbefalinger baseret på brugerens svar 
+            if (userAnswers.q0 === "Lys" && userAnswers.q1 === "Lipgloss" && userAnswers.q2 === "Kold") {
+                recommendation = "En blød pink gloss passer perfekt til dig!";
+                imageSrc = "Billeder/nyx-lipgloss.png";
+                productLink = "https://www.matas.dk/nyx-professional-makeup-soft-matte-lip-cream---monte-carlo";
+            } else if (userAnswers.q0 === "Medium" && userAnswers.q1 === "Læbestift" && userAnswers.q2 === "Varm") {
+                recommendation = "En varm rød læbestift med orange undertoner vil se fantastisk ud!";
+                imageSrc = "Billeder/mac-lipstick.png";
+                productLink = "https://www.matas.dk/mac-lustreglass-lipstick-chili-popper";
+            } else {
+                recommendation = "En nude lip plumper giver et naturligt og sofistikeret look.";
+                imageSrc = "Billeder/elf-lip-plump.png";
+                productLink = "https://well.dk/elf-makeup-matte-lip-color-rich-red-1-4-g";
+            }
+
+            document.getElementById("resultText").textContent = recommendation; //Viser anbefalingen til brugeren 
+            document.getElementById("lipstickImage").src = imageSrc; // Viser produktbilledet 
+            document.getElementById("lipstickImage").style.display = "block"; // Gør billedet synligt 
+            document.getElementById("productLink").href = productLink; // opdaterer produktlinket
+        }
+
+        function goBack() {
+            localStorage.removeItem("quizAnswers"); // Ryder brugererens svar 
+            window.location.href = "makeup-test.html"; // Sender brugeren tilbage til quizzen 
+        }
+
+        document.addEventListener("DOMContentLoaded", loadResults); // Loader resultaterne, når siden er klar 
+    </script>
